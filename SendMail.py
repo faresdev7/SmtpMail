@@ -32,10 +32,9 @@ part.add_header('Content-Disposition', 'attachment; filename=attachment.html')
 msg = MIMEMultipart()
 msg['Subject'] = Subject
 msg['From'] = email
-
 msg.attach(part)
 msg.attach(part2);
-
 for item in lines:
+	smtp.login(email,password)
     msg['To'] = item
-    smtp.sendmail(email, to, msg.as_string())
+    smtp.sendmail(email, item, msg.as_string())
